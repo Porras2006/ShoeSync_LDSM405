@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShoeSync - Inventario de Almacén</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Estilos Independientes -->
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="stylesheet" href="../assets/css/components.css">
+    <link rel="stylesheet" href="../assets/css/responsive.css">
+</head>
+<body>
+    <!-- Sidebar Desktop -->
+    <aside class="sidebar-shoesync d-none d-lg-block">
+        <div class="d-flex align-items-center mb-4">
+    <img src="../assets/img/logo/logo_solo.png" alt="ShoeSync" style="height: 45px; width: auto;">
+    <span class="fs-4 fw-bold text-dark">ShoeSync</span>
+</div>
+        <nav class="nav flex-column gap-1">
+            <a class="nav-link text-secondary" href="dashboard.html"><i class="bi bi-grid me-2"></i>Dashboard</a>
+            <a class="nav-link active bg-primary bg-opacity-10 text-primary rounded fw-bold" href="inventario.html"><i class="bi bi-boxes me-2"></i>Inventario</a>
+            <a class="nav-link text-secondary" href="entradas.html"><i class="bi bi-arrow-down-right-circle me-2"></i>Entradas</a>
+            <a class="nav-link text-secondary" href="salidas.html"><i class="bi bi-arrow-up-right-circle me-2"></i>Salidas</a>
+            <a class="nav-link text-secondary" href="movimientos.html"><i class="bi bi-clock-history me-2"></i>Movimientos</a>
+            <hr>
+            <button onclick="logoutUser()" class="btn btn-outline-danger w-100"><i class="bi bi-box-arrow-right me-2"></i>Cerrar Sesión</button>
+        </nav>
+    </aside>
+
+    <main class="main-wrapper">
+        <header class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h1 class="h3 fw-bold mb-0">Inventario General de Materia Prima</h1>
+                <small class="text-secondary">Control de insumos, suelas, pieles y consumibles</small>
+            </div>
+            <div class="d-flex gap-2">
+                <a href="entradas.html" class="btn btn-shoesync-primary"><i class="bi bi-plus-lg me-1"></i> Nueva Entrada</a>
+                <a href="salidas.html" class="btn btn-shoesync-secondary"><i class="bi bi-dash-lg me-1"></i> Nueva Salida</a>
+            </div>
+        </header>
+
+        <!-- Buscador y Filtro -->
+        <div class="card-shoesync p-3 mb-4">
+            <div class="row g-2">
+                <div class="col-md-8">
+                    <div class="input-group">
+                        <span class="input-group-text bg-white border-end-0"><i class="bi bi-search"></i></span>
+                        <input type="text" id="inputBuscarInsumo" class="form-control border-start-0" placeholder="Buscar por código o insumo..." onkeyup="filtrarTablaInsumos()">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <select class="form-select" id="selectFiltroEstado" onchange="filtrarTablaInsumos()">
+                        <option value="todos">Todos los estados</option>
+                        <option value="disponible">Disponible</option>
+                        <option value="bajo">Stock Bajo</option>
+                        <option value="agotado">Agotado</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <section class="card-shoesync p-3">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0" id="tablaInventario">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Código</th>
+                            <th>Insumo / Producto</th>
+                            <th>Categoría</th>
+                            <th>Existencia</th>
+                            <th>Stock Mínimo</th>
+                            <th>Estado</th>
+                            <th class="text-end">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr data-estado="disponible">
+                            <td><strong>INS-001</strong></td>
+                            <td>Piel Vacuna Robusta (m²)</td>
+                            <td>Materia Prima</td>
+                            <td class="fw-bold">450 m²</td>
+                            <td class="text-secondary">100 m²</td>
+                            <td><span class="badge bg-success">Disponible</span></td>
+                            <td class="text-end"><button class="btn btn-sm btn-shoesync-secondary" onclick="alert('Detalle de Piel Vacuna')"><i class="bi bi-eye"></i></button></td>
+                        </tr>
+                        <tr data-estado="bajo">
+                            <td><strong>INS-002</strong></td>
+                            <td>Suela Antiderrapante T27</td>
+                            <td>Componentes</td>
+                            <td class="fw-bold text-warning">80 pares</td>
+                            <td class="text-secondary">200 pares</td>
+                            <td><span class="badge bg-warning text-dark">Stock Bajo</span></td>
+                            <td class="text-end"><button class="btn btn-sm btn-shoesync-secondary" onclick="alert('Detalle de Suela T27')"><i class="bi bi-eye"></i></button></td>
+                        </tr>
+                        <tr data-estado="agotado">
+                            <td><strong>INS-003</strong></td>
+                            <td>Hilo Alta Tenacidad Negro</td>
+                            <td>Consumibles</td>
+                            <td class="fw-bold text-danger">0 rollos</td>
+                            <td class="text-secondary">15 rollos</td>
+                            <td><span class="badge bg-danger">Agotado</span></td>
+                            <td class="text-end"><button class="btn btn-sm btn-shoesync-secondary" onclick="alert('Detalle de Hilo Negro')"><i class="bi bi-eye"></i></button></td>
+                        </tr>
+                        <tr data-estado="disponible">
+                            <td><strong>INS-004</strong></td>
+                            <td>Pegamento Industrial Vulcanizado</td>
+                            <td>Químicos</td>
+                            <td class="fw-bold">120 L</td>
+                            <td class="text-secondary">30 L</td>
+                            <td><span class="badge bg-success">Disponible</span></td>
+                            <td class="text-end"><button class="btn btn-sm btn-shoesync-secondary" onclick="alert('Detalle de Pegamento')"><i class="bi bi-eye"></i></button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <!-- Bottom Navigation Móvil -->
+    <nav class="mobile-bottom-nav">
+        <a href="dashboard.html"><i class="bi bi-grid"></i>Inicio</a>
+        <a href="inventario.html" class="active"><i class="bi bi-boxes"></i>Stock</a>
+        <a href="entradas.html"><i class="bi bi-arrow-down-right-circle"></i>Entradas</a>
+        <a href="salidas.html"><i class="bi bi-arrow-up-right-circle"></i>Salidas</a>
+        <a href="#" onclick="logoutUser()"><i class="bi bi-box-arrow-right"></i>Salir</a>
+    </nav>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/auth.js"></script>
+    <script>
+        function filtrarTablaInsumos() {
+            const texto = document.getElementById('inputBuscarInsumo').value.toLowerCase();
+            const est = document.getElementById('selectFiltroEstado').value;
+            const filas = document.querySelectorAll('#tablaInventario tbody tr');
+
+            filas.forEach(f => {
+                const coincideTexto = f.textContent.toLowerCase().includes(texto);
+                const coincideEst = (est === 'todos' || f.dataset.estado === est);
+                
+                if (coincideTexto && coincideEst) {
+                    f.classList.remove('d-none');
+                } else {
+                    f.classList.add('d-none');
+                }
+            });
+        }
+    </script>
+</body>
+</html>

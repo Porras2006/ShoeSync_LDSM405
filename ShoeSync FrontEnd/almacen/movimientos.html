@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShoeSync - Historial de Movimientos</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Estilos Independientes -->
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="stylesheet" href="../assets/css/components.css">
+    <link rel="stylesheet" href="../assets/css/responsive.css">
+</head>
+<body>
+    <aside class="sidebar-shoesync d-none d-lg-block">
+        <div class="d-flex align-items-center mb-4">
+    <img src="../assets/img/logo/logo_solo.png" alt="ShoeSync" style="height: 45px; width: auto;">
+    <span class="fs-4 fw-bold text-dark">ShoeSync</span>
+</div>
+        <nav class="nav flex-column gap-1">
+            <a class="nav-link text-secondary" href="dashboard.html"><i class="bi bi-grid me-2"></i>Dashboard</a>
+            <a class="nav-link text-secondary" href="inventario.html"><i class="bi bi-boxes me-2"></i>Inventario</a>
+            <a class="nav-link text-secondary" href="entradas.html"><i class="bi bi-arrow-down-right-circle me-2"></i>Entradas</a>
+            <a class="nav-link text-secondary" href="salidas.html"><i class="bi bi-arrow-up-right-circle me-2"></i>Salidas</a>
+            <a class="nav-link active bg-primary bg-opacity-10 text-primary rounded fw-bold" href="movimientos.html"><i class="bi bi-clock-history me-2"></i>Movimientos</a>
+            <hr>
+            <button onclick="logoutUser()" class="btn btn-outline-danger w-100"><i class="bi bi-box-arrow-right me-2"></i>Cerrar Sesión</button>
+        </nav>
+    </aside>
+
+    <main class="main-wrapper">
+        <header class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h1 class="h3 fw-bold mb-0">Historial de Movimientos</h1>
+                <small class="text-secondary">Kardex auditable de entradas y salidas de almacén</small>
+            </div>
+            <button class="btn btn-shoesync-secondary" onclick="alert('Exportando kardex de almacén en PDF...')"><i class="bi bi-download me-1"></i> Exportar Kardex</button>
+        </header>
+
+        <section class="card-shoesync p-3">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Fecha y Hora</th>
+                            <th>Tipo</th>
+                            <th>Insumo</th>
+                            <th>Cantidad</th>
+                            <th>Origen / Destino</th>
+                            <th>Usuario Responsable</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>08/Oct/2026 - 11:20 AM</td>
+                            <td><span class="badge bg-danger"><i class="bi bi-arrow-up-right me-1"></i>Salida</span></td>
+                            <td><strong>Piel Vacuna Robusta</strong></td>
+                            <td class="fw-bold text-danger">- 50 m²</td>
+                            <td>Línea de Corte (PED-001)</td>
+                            <td>Roberto Gómez</td>
+                        </tr>
+                        <tr>
+                            <td>07/Oct/2026 - 04:15 PM</td>
+                            <td><span class="badge bg-success"><i class="bi bi-arrow-down-right me-1"></i>Entrada</span></td>
+                            <td><strong>Pegamento Industrial</strong></td>
+                            <td class="fw-bold text-success">+ 60 L</td>
+                            <td>Curtidos Guanajuato S.A.</td>
+                            <td>Roberto Gómez</td>
+                        </tr>
+                        <tr>
+                            <td>05/Oct/2026 - 09:30 AM</td>
+                            <td><span class="badge bg-danger"><i class="bi bi-arrow-up-right me-1"></i>Salida</span></td>
+                            <td><strong>Suela Antiderrapante T27</strong></td>
+                            <td class="fw-bold text-danger">- 120 pares</td>
+                            <td>Línea de Montado (PED-004)</td>
+                            <td>Roberto Gómez</td>
+                        </tr>
+                        <tr>
+                            <td>02/Oct/2026 - 02:00 PM</td>
+                            <td><span class="badge bg-success"><i class="bi bi-arrow-down-right me-1"></i>Entrada</span></td>
+                            <td><strong>Piel Vacuna Robusta</strong></td>
+                            <td class="fw-bold text-success">+ 500 m²</td>
+                            <td>Pieles León S.A. de C.V.</td>
+                            <td>Roberto Gómez</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <!-- Bottom Navigation Móvil -->
+    <nav class="mobile-bottom-nav">
+        <a href="dashboard.html"><i class="bi bi-grid"></i>Inicio</a>
+        <a href="inventario.html"><i class="bi bi-boxes"></i>Stock</a>
+        <a href="entradas.html"><i class="bi bi-arrow-down-right-circle"></i>Entradas</a>
+        <a href="movimientos.html" class="active"><i class="bi bi-clock-history"></i>Movimientos</a>
+        <a href="#" onclick="logoutUser()"><i class="bi bi-box-arrow-right"></i>Salir</a>
+    </nav>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/auth.js"></script>
+</body>
+</html>

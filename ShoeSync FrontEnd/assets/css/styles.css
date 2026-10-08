@@ -1,0 +1,70 @@
+/* ==========================================================================
+   SHOESYNC - ESTILOS GLOBALES
+   ========================================================================== */
+
+:root {
+  /* Paleta Oficial ShoeSync */
+  --ss-bg-primary: #ffffff;
+  --ss-bg-secondary: #f5f8fc;
+  --ss-blue-main: #3b82f6;
+  --ss-blue-light: #dbeafe;
+  --ss-blue-ultra-light: #eff6ff;
+  --ss-text-main: #1f2937;
+  --ss-text-secondary: #64748b;
+  --ss-border: #e2e8f0;
+  
+  /* Colores Semánticos */
+  --ss-success: #16a34a;
+  --ss-warning: #f59e0b;
+  --ss-error: #dc2626;
+
+  /* Radio de Borde y Sombras Suaves */
+  --ss-radius: 10px;
+  --ss-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: var(--ss-bg-secondary);
+  color: var(--ss-text-main);
+  min-height: 100vh;
+  margin: 0;
+}
+
+/* Clases de Utilidad de Marca */
+.bg-shoesync-primary { background-color: var(--ss-bg-primary) !important; }
+.bg-shoesync-secondary { background-color: var(--ss-bg-secondary) !important; }
+.text-shoesync-blue { color: var(--ss-blue-main) !important; }
+
+/* Botón Principal Azul */
+.btn-shoesync-primary {
+  background-color: var(--ss-blue-main);
+  color: #ffffff;
+  border: none;
+  font-weight: 600;
+  border-radius: var(--ss-radius);
+  padding: 0.6rem 1.2rem;
+  transition: all 0.2s ease;
+}
+
+.btn-shoesync-primary:hover {
+  background-color: #2563eb;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25);
+}
+
+/* Botón Secundario Blanco con borde */
+.btn-shoesync-secondary {
+  background-color: #ffffff;
+  color: var(--ss-text-main);
+  border: 1px solid var(--ss-border);
+  font-weight: 500;
+  border-radius: var(--ss-radius);
+  padding: 0.6rem 1.2rem;
+}
+
+.btn-shoesync-secondary:hover {
+  background-color: var(--ss-blue-ultra-light);
+  border-color: var(--ss-blue-light);
+  color: var(--ss-blue-main);
+}

@@ -1,1 +1,113 @@
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bitácora de ShoeSync | Miguel Porras - Fernando Salazar - Carlos Santana - Alejandra Nicasio - Nadia Rodriguez</title>
 
+    <!-- Google Fonts (Poppins & Inter) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+
+    <!-- Google Material Symbols -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+
+    <!-- Bootstrap 5 CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a;
+            color: #f8f9fa;
+        }
+
+        h1, h2, h3, h4, .navbar-brand {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .hero-banner {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            border-bottom: 2px solid #ffc107;
+        }
+
+        .card-practica {
+            background-color: #1e293b;
+            border: 1px solid #334155;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .card-practica:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+            border-color: #ffc107;
+        }
+
+        .material-symbols-outlined {
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ENCABEZADO Y HERO SECTION -->
+    <header class="hero-banner py-5 mb-5 text-center">
+        <section class="container py-3">
+            <span class="badge bg-warning text-dark px-3 py-2 fw-bold mb-3">
+                <span class="material-symbols-outlined fs-6 align-middle">folder_code</span> Portafolio Universitario
+            </span>
+            <h1 class="display-4 fw-bold text-white mb-2">Bitácora de ShoeSync</h1>
+            <p class="lead text-secondary mx-auto" style="max-width: 600px;">
+                Repositorio de proyectos y actividades académicas desarrollados para el aprendizaje de tecnologías frontend y arquitectura web.
+            </p>
+        </section>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL: UNIDADES -->
+    <main class="container mb-5">
+
+        <!-- UNIDAD 2 -->
+        <section class="mb-5">
+            <header class="d-flex align-items-center gap-2 border-bottom border-warning pb-2 mb-4">
+                <span class="material-symbols-outlined text-warning fs-2">view_kanban</span>
+                <h2 class="h3 text-warning mb-0 fw-bold">ShoeSync</h2>
+            </header>
+
+            <section class="row g-4">
+                <!-- Primera Práctica -->
+                <article class="col-12 col-md-6 col-lg-4">
+                    <section class="card card-practica h-100 p-3 shadow-sm d-flex flex-column">
+                        <header class="d-flex justify-content-between align-items-start mb-3">
+                            <span class="badge bg-info text-dark">FrontEnd</span>
+                            <span class="material-symbols-outlined text-warning fs-2">web</span>
+                        </header>
+                        <h3 class="h5 text-white fw-bold mb-2">Primera Práctica</h3>
+                        <footer class="mt-3">
+                            <a href="ShoeSync FrontEnd/login.html" class="btn btn-outline-warning w-100 fw-bold d-flex align-items-center justify-content-center gap-1">
+                                <span>Ver Práctica</span>
+                                <span class="material-symbols-outlined fs-6">arrow_forward</span>
+                            </a>
+                        </footer>
+                    </section>
+                </article>
+        </section>
+        </section>
+
+    </main>
+
+    <!-- PIE DE PÁGINA -->
+    <footer class="bg-dark text-white text-center py-4 border-top border-warning mt-auto">
+        <section class="container">
+            <h3 class="h6 fw-bold mb-1">Miguel Ángel Porras Flores</h3>
+            <p class="text-secondary small mb-0 d-flex align-items-center justify-content-center gap-1">
+                <span class="material-symbols-outlined fs-6 text-warning">mail</span>
+                <a href="mailto:porrasmiguel760@gmail.com" class="text-secondary text-decoration-none">porrasmiguel760@gmail.com</a>
+            </p>
+        </section>
+    </footer>
+
+    <!-- Bootstrap CDN JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

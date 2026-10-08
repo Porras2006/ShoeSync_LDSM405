@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShoeSync - Escáner QR de Producción</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Estilos Independientes -->
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="stylesheet" href="../assets/css/components.css">
+    <link rel="stylesheet" href="../assets/css/responsive.css">
+</head>
+<body>
+
+    <!-- Sidebar Desktop -->
+    <aside class="sidebar-shoesync d-none d-lg-block">
+        <div class="d-flex align-items-center mb-4">
+    <img src="../assets/img/logo/logo_solo.png" alt="ShoeSync" style="height: 45px; width: auto;">
+    <span class="fs-4 fw-bold text-dark">ShoeSync</span>
+</div>
+        <nav class="nav flex-column gap-1">
+            <a class="nav-link text-secondary" href="dashboard.html"><i class="bi bi-grid me-2"></i>Dashboard</a>
+            <a class="nav-link text-secondary" href="pedidos.html"><i class="bi bi-list-task me-2"></i>Pedidos</a>
+            <a class="nav-link text-secondary" href="etapas.html"><i class="bi bi-diagram-3 me-2"></i>Etapas</a>
+            <a class="nav-link active bg-primary bg-opacity-10 text-primary rounded fw-bold" href="qr.html"><i class="bi bi-qr-code-scan me-2"></i>Escanear QR</a>
+            <a class="nav-link text-secondary" href="historial.html"><i class="bi bi-clock-history me-2"></i>Historial</a>
+            <hr>
+            <button onclick="logoutUser()" class="btn btn-outline-danger w-100"><i class="bi bi-box-arrow-right me-2"></i>Cerrar Sesión</button>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-wrapper">
+        <header class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h1 class="h3 fw-bold mb-0">Seguimiento por Código QR</h1>
+                <small class="text-secondary">Módulo de Producción</small>
+            </div>
+        </header>
+
+        <section class="row g-4 justify-content-center">
+            <!-- Área de Escaneo -->
+            <article class="col-12 col-md-6">
+                <div class="card-shoesync text-center p-4">
+                    <h2 class="h5 fw-bold mb-3">Escáner de Lote o Pedido</h2>
+                    
+                    <div class="border border-2 border-primary border-dashed rounded p-4 bg-light mb-3 d-flex flex-column align-items-center justify-content-center" style="min-height: 220px;">
+                        <i class="bi bi-qr-code-scan display-1 text-primary mb-2"></i>
+                        <p class="text-secondary small mb-0">Apunta la cámara al código QR del lote o caja</p>
+                    </div>
+
+                    <form onsubmit="simularEscaneoQR(event)" class="mb-3">
+                        <div class="input-group">
+                            <input type="text" id="inputCodigoQR" class="form-control" placeholder="Ej. PED-001 o LOT-102" required>
+                            <button type="submit" class="btn btn-shoesync-primary"><i class="bi bi-search me-1"></i> Consultar</button>
+                        </div>
+                    </form>
+                </div>
+            </article>
+
+            <!-- Resultado del Escaneo -->
+            <article class="col-12 col-md-6">
+                <div id="resultadoQR" class="card-shoesync p-4 d-none">
+                    <div class="d-flex justify-content-between align-items-start mb-3">
+                        <div>
+                            <span class="badge bg-warning text-dark mb-1" id="qrEtapa">Pespunte</span>
+                            <h2 class="h4 fw-bold mb-0" id="qrPedidoId">Pedido #PED-001</h2>
+                        </div>
+                        <i class="bi bi-check-circle-fill text-success fs-2"></i>
+                    </div>
+
+                    <ul class="list-group list-group-flush mb-3">
+                        <li class="list-group-item px-0 d-flex justify-content-between"><span class="text-secondary">Cliente:</span> <strong id="qrCliente">Coppel S.A.</strong></li>
+                        <li class="list-group-item px-0 d-flex justify-content-between"><span class="text-secondary">Modelo:</span> <strong id="qrModelo">Bota Industrial Pro</strong></li>
+                        <li class="list-group-item px-0 d-flex justify-content-between"><span class="text-secondary">Cantidad:</span> <strong id="qrCantidad">2,000 pares</strong></li>
+                        <li class="list-group-item px-0 d-flex justify-content-between"><span class="text-secondary">Avance General:</span> <strong id="qrAvance">65%</strong></li>
+                    </ul>
+
+                    <div class="progress mb-3" style="height: 10px;">
+                        <div id="qrProgressBar" class="progress-bar bg-primary" role="progressbar" style="width: 65%;"></div>
+                    </div>
+
+                    <button class="btn btn-shoesync-secondary w-100" onclick="alert('Actualización de etapa simulada.')"><i class="bi bi-arrow-repeat me-1"></i> Actualizar Etapa</button>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <!-- Navigation Móvil -->
+    <nav class="mobile-bottom-nav">
+        <a href="dashboard.html"><i class="bi bi-grid"></i>Inicio</a>
+        <a href="pedidos.html"><i class="bi bi-list-task"></i>Pedidos</a>
+        <a href="qr.html" class="active"><i class="bi bi-qr-code-scan"></i>QR</a>
+        <a href="#" onclick="logoutUser()"><i class="bi bi-box-arrow-right"></i>Salir</a>
+    </nav>
+
+    <!-- Scripts -->
+    <script src="../assets/js/auth.js"></script>
+    <script>
+        function simularEscaneoQR(e) {
+            e.preventDefault();
+            const cod = document.getElementById('inputCodigoQR').value.toUpperCase().trim();
+            const res = document.getElementById('resultadoQR');
+            
+            document.getElementById('qrPedidoId').textContent = `Pedido #${cod}`;
+            document.getElementById('qrCliente').textContent = cod.includes('002') ? 'Elektra' : 'Coppel';
+            document.getElementById('qrModelo').textContent = cod.includes('002') ? 'Calzado Escolar' : 'Bota Industrial Pro';
+            
+            const pct = cod.includes('002') ? 25 : 65;
+            document.getElementById('qrAvance').textContent = `${pct}%`;
+            document.getElementById('qrProgressBar').style.width = `${pct}%`;
+            
+            res.classList.remove('d-none');
+        }
+    </script>
+</body>
+</html>

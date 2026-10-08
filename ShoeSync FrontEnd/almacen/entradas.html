@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShoeSync - Registro de Entradas</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Estilos Independientes -->
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="stylesheet" href="../assets/css/components.css">
+    <link rel="stylesheet" href="../assets/css/responsive.css">
+</head>
+<body>
+    <aside class="sidebar-shoesync d-none d-lg-block">
+        <div class="d-flex align-items-center mb-4">
+    <img src="../assets/img/logo/logo_solo.png" alt="ShoeSync" style="height: 45px; width: auto;">
+    <span class="fs-4 fw-bold text-dark">ShoeSync</span>
+</div>
+        <nav class="nav flex-column gap-1">
+            <a class="nav-link text-secondary" href="dashboard.html"><i class="bi bi-grid me-2"></i>Dashboard</a>
+            <a class="nav-link text-secondary" href="inventario.html"><i class="bi bi-boxes me-2"></i>Inventario</a>
+            <a class="nav-link active bg-primary bg-opacity-10 text-primary rounded fw-bold" href="entradas.html"><i class="bi bi-arrow-down-right-circle me-2"></i>Entradas</a>
+            <a class="nav-link text-secondary" href="salidas.html"><i class="bi bi-arrow-up-right-circle me-2"></i>Salidas</a>
+            <a class="nav-link text-secondary" href="movimientos.html"><i class="bi bi-clock-history me-2"></i>Movimientos</a>
+            <hr>
+            <button onclick="logoutUser()" class="btn btn-outline-danger w-100"><i class="bi bi-box-arrow-right me-2"></i>Cerrar Sesión</button>
+        </nav>
+    </aside>
+
+    <main class="main-wrapper" style="max-width: 800px;">
+        <header class="mb-4">
+            <h1 class="h3 fw-bold mb-0">Registrar Entrada a Almacén</h1>
+            <small class="text-secondary">Recepción de proveedores e insumos de fabricación</small>
+        </header>
+
+        <div class="card-shoesync p-4">
+            <form onsubmit="alert('Entrada de materia prima registrada correctamente.'); window.location.href='inventario.html'; return false;">
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label small fw-bold">Insumo / Producto</label>
+                        <select class="form-select" required>
+                            <option value="">Selecciona un insumo...</option>
+                            <option>INS-001 - Piel Vacuna Robusta (m²)</option>
+                            <option>INS-002 - Suela Antiderrapante T27</option>
+                            <option>INS-003 - Hilo Alta Tenacidad Negro</option>
+                            <option>INS-004 - Pegamento Industrial Vulcanizado</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label small fw-bold">Cantidad Ingresada</label>
+                        <input type="number" class="form-control" min="1" placeholder="Ej. 100" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label small fw-bold">Proveedor / Origen</label>
+                        <input type="text" class="form-control" placeholder="Ej. Curtidos Guanajuato S.A." required>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label small fw-bold">Número de Factura / Remisión</label>
+                        <input type="text" class="form-control" placeholder="Ej. REM-2026-88" required>
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label small fw-bold">Observaciones</label>
+                        <textarea class="form-control" rows="2" placeholder="Detalles del estado de recepción o lote de proveedor..."></textarea>
+                    </div>
+                    <div class="col-12 mt-4">
+                        <button type="submit" class="btn btn-shoesync-primary w-100"><i class="bi bi-check-circle me-1"></i> Confirmar Entrada de Insumos</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <!-- Bottom Navigation Móvil -->
+    <nav class="mobile-bottom-nav">
+        <a href="dashboard.html"><i class="bi bi-grid"></i>Inicio</a>
+        <a href="inventario.html"><i class="bi bi-boxes"></i>Stock</a>
+        <a href="entradas.html" class="active"><i class="bi bi-arrow-down-right-circle"></i>Entradas</a>
+        <a href="salidas.html"><i class="bi bi-arrow-up-right-circle"></i>Salidas</a>
+        <a href="#" onclick="logoutUser()"><i class="bi bi-box-arrow-right"></i>Salir</a>
+    </nav>
+
+    <script src="../assets/js/auth.js"></script>
+</body>
+</html>
